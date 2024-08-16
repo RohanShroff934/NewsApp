@@ -1,9 +1,11 @@
 import com.android.aaptcompiler.parseNavigation
+//mport org.jetbrains.kotlin.gradle.internal.kapt.incremental.UnknownSnapshot.classpath
 
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
     id("kotlin-kapt")
+    id("androidx.navigation.safeargs.kotlin")
 }
 
 android {
@@ -81,5 +83,8 @@ dependencies {
     // Glide
     implementation (libs.glide)
     kapt (libs.compiler)
+    //val nav_version = "2.7.7"
+    (libs.androidx.navigation.safe.args.gradle.plugin)
+    (libs.androidx.navigation.safe.args.gradle.plugin.v230alpha04)
 
 }
