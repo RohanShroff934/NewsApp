@@ -31,7 +31,9 @@ class NewsAdapter : RecyclerView.Adapter<NewsAdapter.ArticleViewHolder>() {
                 tvTitle.text = article.title
                 tvDescription.text = article.description
                 //tvDescription.text = "Hello"
-                tvPublishedAt.text = article.publishedAt
+                val publishedAt = article.publishedAt
+                tvPublishedAt.text = formatPublishedAt(publishedAt)
+
 
                 root.setOnClickListener {
                     clickListener?.invoke(article)
@@ -71,4 +73,11 @@ class NewsAdapter : RecyclerView.Adapter<NewsAdapter.ArticleViewHolder>() {
     fun setOnItemClickListener(listener: (Article) -> Unit) {
         onItemClickListener = listener
     }
+    fun formatPublishedAt(publishedAt: String?): String {
+        val date = publishedAt?.take(10) ?: " "
+        val time = publishedAt?.drop(11)?.take(5) ?: ""
+        return "$date  $time"
+    }
+
+
 }

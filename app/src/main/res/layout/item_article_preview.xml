@@ -62,6 +62,7 @@
         android:layout_marginTop="8dp"
         android:text="@string/published_at"
         android:textColor="@android:color/black"
+        app:layout_constraintEnd_toStartOf="@+id/tvDescription"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvSource" />
 

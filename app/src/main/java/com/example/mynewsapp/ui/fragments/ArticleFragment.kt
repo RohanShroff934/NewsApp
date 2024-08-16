@@ -3,6 +3,7 @@ package com.example.mynewsapp.ui.fragments
 import android.graphics.Bitmap
 import android.os.Bundle
 import android.view.View
+import android.webkit.WebResourceRequest
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import android.widget.Button
@@ -13,6 +14,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.mynewsapp.R
 import com.example.mynewsapp.ui.MainActivity
 import com.example.mynewsapp.ui.NewsViewModel
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.android.material.snackbar.Snackbar
 
 
 class ArticleFragment : Fragment (R.layout.fragment_article) {
@@ -50,13 +53,22 @@ class ArticleFragment : Fragment (R.layout.fragment_article) {
                 // Handle the error
                 Toast.makeText(context, "Error: $description", Toast.LENGTH_SHORT).show()
             }
-        }
+            override fun shouldOverrideUrlLoading(
+                view: WebView?,
+                request: WebResourceRequest?
+            ): Boolean {
+                view?.loadUrl(request?.url?.toString().orEmpty())
+                return true
+            }
 
-        /* val fab = view.findViewById<Button>(R.id.fab)
+        }
+        webView.loadUrl(article.url)
+        val fab = view.findViewById<FloatingActionButton>(R.id.fab)
 
          fab.setOnClickListener{
-             viewModel.saveArticle(article)
-         }*/
+            viewModel.saveArticle(article)
+             Snackbar.make(view,"Article has been saved",Snackbar.LENGTH_SHORT).show()
+         }
 
     }
 
