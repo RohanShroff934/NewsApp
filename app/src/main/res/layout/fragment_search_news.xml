@@ -28,6 +28,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         style="?attr/progressBarStyle"
+        android:id="@+id/paginationProgressBar"
         android:visibility="invisible"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

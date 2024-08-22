@@ -21,6 +21,7 @@ navigationSafeArgsGradlePlugin = "2.3.0-alpha04"
 navigationSafeArgsGradlePluginVersion = "1.0.0"
 roomCompiler = "2.6.1"
 roomRuntime = "2.6.1"
+uiDesktop = "1.6.8"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -52,6 +53,7 @@ androidx-constraintlayout = { group = "androidx.constraintlayout", name = "const
 material-v180 = { module = "com.google.android.material:material", version.ref = "materialVersion" }
 navigation-safe-args-gradle-plugin = { module = "android.arch.navigation:navigation-safe-args-gradle-plugin", version.ref = "navigationSafeArgsGradlePluginVersion" }
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "converterGson" }
+androidx-ui-desktop = { group = "androidx.compose.ui", name = "ui-desktop", version.ref = "uiDesktop" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

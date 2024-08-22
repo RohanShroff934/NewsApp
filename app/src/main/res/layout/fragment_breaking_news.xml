@@ -19,6 +19,7 @@
     <ProgressBar
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:id="@+id/paginationProgressBar"
         style="?attr/progressBarStyle"
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginTop="4dp"
