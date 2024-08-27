@@ -1,3 +1,4 @@
+/*
 package com.example.mynewsapp.ui
 
 import android.app.Application
@@ -12,3 +13,5 @@ class NewsViewModelProviderFactory(
         return NewsViewModel(newsRepository,app) as T
     }
 }
+
+ */

@@ -4,6 +4,7 @@ import NewsAdapter
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
@@ -13,13 +14,17 @@ import com.example.mynewsapp.R
 import com.example.mynewsapp.ui.MainActivity
 import com.example.mynewsapp.ui.NewsViewModel
 import com.google.android.material.snackbar.Snackbar
+import javax.inject.Inject
 
 class SavedNewsFragment : Fragment (R.layout.fragment_saved_news) {
-    lateinit var viewModel:NewsViewModel
+
     lateinit var newsAdapter: NewsAdapter
+   // @get:Inject
+    val viewModel:NewsViewModel by viewModels()
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel = (activity as MainActivity).viewModel
+       // viewModel = (activity as MainActivity).viewModel
 
         setupRecyclerView()
 

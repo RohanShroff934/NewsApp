@@ -9,6 +9,7 @@ import android.webkit.WebViewClient
 import android.widget.Button
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mynewsapp.R
@@ -16,16 +17,18 @@ import com.example.mynewsapp.ui.MainActivity
 import com.example.mynewsapp.ui.NewsViewModel
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
+import javax.inject.Inject
 
 
 class ArticleFragment : Fragment (R.layout.fragment_article) {
-    lateinit var viewModel: NewsViewModel
     val args:ArticleFragmentArgs by navArgs()
+    @get:Inject
+    val viewModel:NewsViewModel by viewModels()
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel = (activity as MainActivity).viewModel
+        //viewModel = (activity as MainActivity).viewModel
         val article = args.article
         val webView: WebView = view.findViewById(R.id.webView)
 
@@ -48,6 +51,7 @@ class ArticleFragment : Fragment (R.layout.fragment_article) {
                 // Optionally hide the loading indicator
             }
 
+            @Deprecated("Deprecated in Java")
             override fun onReceivedError(view: WebView?, errorCode: Int, description: String?, failingUrl: String?) {
                 super.onReceivedError(view, errorCode, description, failingUrl)
                 // Handle the error

@@ -2,6 +2,11 @@
 agp = "8.5.1"
 converterGson = "2.11.0"
 glide = "4.11.0"
+hiltAndroid = "2.52"
+hiltAndroidGradlePlugin = "2.52"
+hiltCompiler = "1.2.0"
+hiltCompilerVersion = "2.52"
+hiltLifecycleViewmodel = "1.0.0-alpha03"
 kotlin = "1.9.0"
 coreKtx = "1.13.1"
 junit = "4.13.2"
@@ -10,12 +15,12 @@ espressoCore = "3.6.1"
 appcompat = "1.7.0"
 kotlinxCoroutinesCore = "1.7.3"
 lifecycleViewmodelKtx = "2.8.4"
-lifecycleViewmodelKtxVersion = "2.2.0"
+lifecycleViewmodelKtxVersion = "2.8.4"
 loggingInterceptor = "4.5.0"
 material = "1.12.0"
 activity = "1.9.1"
 constraintlayout = "2.1.4"
-materialVersion = "1.8.0"
+materialVersion = "1.12.0"
 navigationFragmentKtx = "2.7.7"
 navigationSafeArgsGradlePlugin = "2.3.0-alpha04"
 navigationSafeArgsGradlePluginVersion = "1.0.0"
@@ -25,6 +30,8 @@ uiDesktop = "1.6.8"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+androidx-hilt-compiler = { module = "androidx.hilt:hilt-compiler", version.ref = "hiltCompiler" }
+androidx-hilt-lifecycle-viewmodel = { module = "androidx.hilt:hilt-lifecycle-viewmodel", version.ref = "hiltLifecycleViewmodel" }
 androidx-lifecycle-runtime-ktx = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "lifecycleViewmodelKtx" }
 androidx-lifecycle-viewmodel-ktx = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "lifecycleViewmodelKtx" }
 androidx-lifecycle-viewmodel-ktx-v220 = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "lifecycleViewmodelKtxVersion" }
@@ -40,6 +47,11 @@ androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "
 compiler = { module = "com.github.bumptech.glide:compiler", version.ref = "glide" }
 converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "converterGson" }
 glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide" }
+hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hiltAndroidGradlePlugin" }
+hilt-android-gradle-plugin = { module = "com.google.dagger:hilt-android-gradle-plugin", version.ref = "hiltAndroidGradlePlugin" }
+hilt-android-v252 = { module = "com.google.dagger:hilt-android", version.ref = "hiltAndroid" }
+hilt-compiler = { module = "com.google.dagger:hilt-compiler", version.ref = "hiltAndroidGradlePlugin" }
+hilt-compiler-v252 = { module = "com.google.dagger:hilt-compiler", version.ref = "hiltCompilerVersion" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }

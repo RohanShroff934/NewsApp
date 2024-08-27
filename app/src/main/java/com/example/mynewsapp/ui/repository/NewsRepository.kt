@@ -4,8 +4,9 @@ import androidx.room.Query
 import com.example.mynewsapp.ui.api.RetrofitInstance
 import com.example.mynewsapp.ui.db.ArticleDatabase
 import com.example.mynewsapp.ui.models.Article
+import javax.inject.Inject
 
-class NewsRepository(
+class NewsRepository @Inject constructor(
     val db: ArticleDatabase
 ) {
     suspend fun getBreakingNews(countryCode:String,pageNumber: Int) =

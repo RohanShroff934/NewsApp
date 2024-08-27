@@ -13,16 +13,18 @@ import com.example.mynewsapp.ui.models.Article
 import com.example.mynewsapp.ui.models.NewsResponse
 import com.example.mynewsapp.ui.repository.NewsRepository
 import com.example.mynewsapp.ui.util.Resource
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import okio.IOException
 import retrofit2.Response
+import javax.inject.Inject
 
-
-class NewsViewModel(
+@HiltViewModel
+class NewsViewModel @Inject constructor(
     val app: Application,
-    val newsRepository: NewsRepository,
-    
-): AndroidViewModel(app) {
+    private val newsRepository: NewsRepository,
+
+    ): AndroidViewModel(app) {
     val breakingNews : MutableLiveData<Resource<NewsResponse>> = MutableLiveData()
     var breakingNewsPage = 1
     var breakingNewsResponse: NewsResponse? = null

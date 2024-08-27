@@ -6,6 +6,8 @@ plugins {
     alias(libs.plugins.jetbrains.kotlin.android)
     id("kotlin-kapt")
     id("androidx.navigation.safeargs.kotlin")
+    id ("dagger.hilt.android.plugin")
+
 }
 
 android {
@@ -87,5 +89,19 @@ dependencies {
     //val nav_version = "2.7.7"
     (libs.androidx.navigation.safe.args.gradle.plugin)
     (libs.androidx.navigation.safe.args.gradle.plugin.v230alpha04)
+
+    //hilt dependencies
+    /*
+    annotationProcessor ("com.google.dagger:hilt-compiler:2.44")
+    implementation ("com.google.dagger:hilt-android:2.44")
+    kapt ("com.google.dagger:hilt-compiler:2.44")
+     */
+    implementation ("com.google.dagger:hilt-android:2.52")
+    kapt ("com.google.dagger:hilt-compiler:2.52")
+    //implementation (libs.androidx.hilt.lifecycle.viewmodel)
+    kapt ("androidx.hilt:hilt-compiler:1.2.0")
+
+    //paging
+    implementation("androidx.paging:paging-runtime:3.3.2")
 
 }

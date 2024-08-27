@@ -6,6 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.example.mynewsapp.ui.models.Article
+import dagger.Provides
 
 
 @Database(
