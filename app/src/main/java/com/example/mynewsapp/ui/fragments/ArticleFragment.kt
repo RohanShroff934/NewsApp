@@ -17,12 +17,14 @@ import com.example.mynewsapp.ui.MainActivity
 import com.example.mynewsapp.ui.NewsViewModel
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
+import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
+@AndroidEntryPoint
 
 class ArticleFragment : Fragment (R.layout.fragment_article) {
     val args:ArticleFragmentArgs by navArgs()
-    @get:Inject
+   // @get:Inject
     val viewModel:NewsViewModel by viewModels()
 
 

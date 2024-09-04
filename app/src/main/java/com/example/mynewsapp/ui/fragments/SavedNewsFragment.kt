@@ -14,7 +14,9 @@ import com.example.mynewsapp.R
 import com.example.mynewsapp.ui.MainActivity
 import com.example.mynewsapp.ui.NewsViewModel
 import com.google.android.material.snackbar.Snackbar
+import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
+@AndroidEntryPoint
 
 class SavedNewsFragment : Fragment (R.layout.fragment_saved_news) {
 

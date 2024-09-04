@@ -21,7 +21,7 @@ class NewsAdapter : RecyclerView.Adapter<NewsAdapter.ArticleViewHolder>() {
                 Glide.with(ivArticleImage.context)
                     .load(article.urlToImage)
                     .placeholder(R.drawable.placeholder)  // Add a placeholder image
-                    .error(R.drawable.error_image)
+                    .error(R.drawable.err)
                     .into(ivArticleImage)
                 Log.d("ArticleDescription", "Description: ${article.description}")
                 //Log.d("ArticleTitle", "Description: ${article.title}")
