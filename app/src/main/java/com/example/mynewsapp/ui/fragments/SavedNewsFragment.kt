@@ -1,17 +1,18 @@
 package com.example.mynewsapp.ui.fragments
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.observe
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mynewsapp.R
+import com.example.mynewsapp.databinding.FragmentSavedNewsBinding
 import com.example.mynewsapp.ui.NewsAdapter
 import com.example.mynewsapp.ui.NewsViewModel
 import com.example.mynewsapp.ui.models.Article
@@ -21,25 +22,35 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class SavedNewsFragment : Fragment(R.layout.fragment_saved_news) {
+class SavedNewsFragment : Fragment() {
+
+    private var _binding: FragmentSavedNewsBinding? = null
+    private val binding get() = _binding!!
 
     private lateinit var newsAdapter: NewsAdapter
     private val viewModel: NewsViewModel by viewModels()
 
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        _binding = FragmentSavedNewsBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setupRecyclerView(view)
-        setupItemTouchHelper(view)
+        setupRecyclerView()
+        setupItemTouchHelper()
 
         // Observe the Flow<PagingData<Article>> from the ViewModel
         observeSavedNews()
     }
 
-    private fun setupRecyclerView(view: View) {
+    private fun setupRecyclerView() {
         newsAdapter = NewsAdapter()
-        val rvSavedNews = view.findViewById<RecyclerView>(R.id.rvSavedNews)
-        rvSavedNews.apply {
+        binding.rvSavedNews.apply {
             adapter = newsAdapter
             layoutManager = LinearLayoutManager(requireContext())
         }
@@ -56,7 +67,7 @@ class SavedNewsFragment : Fragment(R.layout.fragment_saved_news) {
         }
     }
 
-    private fun setupItemTouchHelper(view: View) {
+    private fun setupItemTouchHelper() {
         val itemTouchHelperCallback = object : ItemTouchHelper.SimpleCallback(
             ItemTouchHelper.UP or ItemTouchHelper.DOWN,
             ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT
@@ -75,7 +86,7 @@ class SavedNewsFragment : Fragment(R.layout.fragment_saved_news) {
                 val article = newsAdapter.peek(position) // Get the article from the adapter
                 if (article != null) {
                     viewModel.deleteArticle(article)
-                    Snackbar.make(view, "Article Deleted", Snackbar.LENGTH_LONG).apply {
+                    Snackbar.make(binding.root, "Article Deleted", Snackbar.LENGTH_LONG).apply {
                         setAction("Undo") {
                             viewModel.saveArticle(article)
                         }
@@ -84,9 +95,7 @@ class SavedNewsFragment : Fragment(R.layout.fragment_saved_news) {
                 }
             }
         }
-        ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(
-            view.findViewById(R.id.rvSavedNews)
-        )
+        ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(binding.rvSavedNews)
     }
 
     private fun observeSavedNews() {
@@ -95,5 +104,10 @@ class SavedNewsFragment : Fragment(R.layout.fragment_saved_news) {
                 newsAdapter.submitData(pagingData)
             }
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

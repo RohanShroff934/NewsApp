@@ -1,14 +1,16 @@
 package com.example.mynewsapp.ui.fragments
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.mynewsapp.R
+import com.example.mynewsapp.databinding.FragmentBreakingNewsBinding
 import com.example.mynewsapp.ui.NewsAdapter
 import com.example.mynewsapp.ui.NewsViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -18,8 +20,19 @@ import kotlinx.coroutines.launch
 @AndroidEntryPoint
 class BreakingNewsFragment : Fragment(R.layout.fragment_breaking_news) {
 
+    private var _binding: FragmentBreakingNewsBinding? = null
+    private val binding get() = _binding!!
+
     private lateinit var newsAdapter: NewsAdapter
     private val viewModel: NewsViewModel by activityViewModels()
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        _binding = FragmentBreakingNewsBinding.inflate(inflater, container, false)
+        return binding.root
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -39,21 +52,22 @@ class BreakingNewsFragment : Fragment(R.layout.fragment_breaking_news) {
 
     private fun setupRecyclerView() {
         newsAdapter = NewsAdapter()
-        val rvBreakingNews = requireView().findViewById<RecyclerView>(R.id.rvBreakingNews)
-        rvBreakingNews.apply {
+        binding.rvBreakingNews.apply {
             adapter = newsAdapter
-            layoutManager = LinearLayoutManager(activity)
+            layoutManager = LinearLayoutManager(requireContext())
         }
     }
 
     private fun observeBreakingNews() {
-        // lifecycleScope to collect paging data
         lifecycleScope.launch {
-            // Collect the PagingData flow
             viewModel.breakingNewsFlow.collectLatest { pagingData ->
-                // Submit the PagingData to the adapter
                 newsAdapter.submitData(pagingData)
             }
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }
