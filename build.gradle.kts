@@ -3,10 +3,14 @@ plugins {
     alias(libs.plugins.android.application) apply false
     alias(libs.plugins.jetbrains.kotlin.android) apply false
     //id("androidx.navigation.safeargs")
+
+
+
 }
 
 buildscript {
     //ext.kotlin_version = '1.3.71'
+
     repositories {
         google()
         mavenCentral()

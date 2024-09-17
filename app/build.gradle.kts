@@ -4,9 +4,9 @@ import com.android.aaptcompiler.parseNavigation
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
-    id("kotlin-kapt")
-    id("androidx.navigation.safeargs.kotlin")
     id ("dagger.hilt.android.plugin")
+    id("androidx.navigation.safeargs.kotlin")
+    id("kotlin-kapt")
 
 }
 
@@ -16,6 +16,7 @@ android {
     viewBinding{
         enable = true
     }
+
 
     defaultConfig {
         applicationId = "com.example.mynewsapp"
@@ -92,16 +93,53 @@ dependencies {
 
     //hilt dependencies
     /*
-    annotationProcessor ("com.google.dagger:hilt-compiler:2.44")
-    implementation ("com.google.dagger:hilt-android:2.44")
-    kapt ("com.google.dagger:hilt-compiler:2.44")
+
      */
     implementation ("com.google.dagger:hilt-android:2.52")
     kapt ("com.google.dagger:hilt-compiler:2.52")
     //implementation (libs.androidx.hilt.lifecycle.viewmodel)
     kapt ("androidx.hilt:hilt-compiler:1.2.0")
+    implementation ("androidx.fragment:fragment-ktx:1.8.3")
 
     //paging
     implementation("androidx.paging:paging-runtime:3.3.2")
+
+    implementation ("androidx.lifecycle:lifecycle-runtime-ktx:2.8.5")
+    implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.5")
+
+    // Coroutines
+    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")
+    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
+
+    //new Dependencies
+    val room_version = "2.6.1"
+
+    implementation("androidx.room:room-runtime:$room_version")
+    annotationProcessor("androidx.room:room-compiler:$room_version")
+
+    // To use Kotlin annotation processing tool (kapt)
+    kapt("androidx.room:room-compiler:$room_version")
+    // To use Kotlin Symbol Processing (KSP)
+
+    // optional - Kotlin Extensions and Coroutines support for Room
+    implementation("androidx.room:room-ktx:$room_version")
+
+    // optional - RxJava2 support for Room
+    implementation("androidx.room:room-rxjava2:$room_version")
+
+    // optional - RxJava3 support for Room
+    implementation("androidx.room:room-rxjava3:$room_version")
+
+    // optional - Guava support for Room, including Optional and ListenableFuture
+    implementation("androidx.room:room-guava:$room_version")
+
+    // optional - Test helpers
+    testImplementation("androidx.room:room-testing:$room_version")
+
+    // optional - Paging 3 Integration
+    implementation("androidx.room:room-paging:$room_version")
+
+    implementation ("androidx.room:room-runtime:$room_version") // Use the latest version
+    kapt ("androidx.room:room-compiler:$room_version")
 
 }
