@@ -14,7 +14,6 @@ import androidx.paging.cachedIn
 import com.example.mynewsapp.ui.api.NewsApi
 import com.example.mynewsapp.ui.models.Article
 import com.example.mynewsapp.ui.paging.NewsPagingSource
-import com.example.mynewsapp.ui.paging.SearchNewsPagingSource
 import com.example.mynewsapp.ui.repository.NewsRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -42,7 +41,7 @@ class NewsViewModel @Inject constructor(
     // Update the Pager to listen to searchQuery
     val searchNewsFlow = searchQuery.flatMapLatest { query ->
         Pager(PagingConfig(pageSize = 20)) {
-            SearchNewsPagingSource(newsRepository.api, query)
+            NewsPagingSource(newsRepository.api, query)
         }.flow.cachedIn(viewModelScope)
     }
 

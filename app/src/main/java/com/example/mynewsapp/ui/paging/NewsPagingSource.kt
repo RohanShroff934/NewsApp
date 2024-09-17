@@ -5,6 +5,7 @@ import android.os.Build
 import androidx.annotation.RequiresExtension
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
+import androidx.room.Query
 import com.example.mynewsapp.ui.NewsAdapter
 import com.example.mynewsapp.ui.api.NewsApi
 import com.example.mynewsapp.ui.models.Article
@@ -15,7 +16,7 @@ import java.io.IOException
 
 class NewsPagingSource(
     private val newsApi: NewsApi,
-    private val sources: String
+    private val query: String?
 ):PagingSource<Int, Article>() {
 
     private var totalNewsCount = 0
@@ -25,7 +26,11 @@ class NewsPagingSource(
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Article> {
         val page = params.key?: 1
         return try {
-            val response = newsApi.getBreakingNews("us", page, API_KEY)
+            var response = newsApi.getBreakingNews("us", page, API_KEY)
+
+            if(query != null) {
+                response = newsApi.searchForNews(query, page, API_KEY)
+            }
 
             if (response.isSuccessful) {
                 val emptyMutableList: MutableList<Article> = mutableListOf()
@@ -47,6 +52,7 @@ class NewsPagingSource(
             LoadResult.Error(e)
         }
     }
+
     override fun getRefreshKey(state: PagingState<Int, Article>): Int? {
         return state.anchorPosition?.let { anchorPosition ->
             val anchorPage = state.closestPageToPosition(anchorPosition)
